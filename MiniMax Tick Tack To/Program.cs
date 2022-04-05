@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 class mainClass
 {
@@ -116,7 +116,7 @@ class mainClass
             }
             if (gameHasWinner == false && i == 8)
             {
-                Console.WriteLine("Tie");
+                Console.WriteLine("Draw");
             }
         }
 
@@ -190,15 +190,14 @@ class mainClass
     static void ai()
     {
         string[] copiedField = (string[])field.Clone();
-        int dimension = 0;
         int finalDimension = 0;
         int highestScore = -10;
 
-        aiMove(copiedField, ref finalDimension, ref highestScore, "X");
+        firstAiMove(copiedField, ref finalDimension, ref highestScore, "X");
         aiDimension = finalDimension;
     }
 
-    static void aiMove(string[] aiField, ref int finalDimension, ref int highestScore, string player)
+    static void firstAiMove(string[] aiField, ref int finalDimension, ref int highestScore, string player)
     {
         int score;
         for (int counter = 0; counter < 9; counter++)
@@ -207,20 +206,28 @@ class mainClass
             {
                 aiField[counter] = player;
 
-                if (aiCheckForWinner(aiField, "X") == true)
+                if (aiCheckForWinner(aiField, "X") == true)//if player wins
                 {
                     score = -10 + counter;
                     if (score > highestScore)
                     {
-                        highestScore = score;
-                        finalDimension = counter;
-                        counter = 8;
+                        if (score > highestScore)
+                        {
+                            highestScore = score;
+                            finalDimension = counter;
+                        }
+                        if (player == "X")
+                        {
+                            aiMove(aiField, ref finalDimension, ref highestScore, counter, "O");
+                        }
+                        else aiMove(aiField, ref finalDimension, ref highestScore, counter, "X");
                     }
 
                 }
-                else if (aiCheckForWinner(aiField, "O") == true)
+                else if (aiCheckForWinner(aiField, "O") == true)//if ai wins
                 {
                     score = 10 - counter;
+                    counter = 9;
                     if (score > highestScore)
                     {
                         highestScore = score;
@@ -232,9 +239,54 @@ class mainClass
                     score = 0;
                     if (player == "X")
                     {
-                        aiMove(aiField, ref finalDimension, ref highestScore, "O");
+                        aiMove(aiField, ref finalDimension, ref highestScore, counter, "O");
                     }
-                    else aiMove(aiField, ref finalDimension, ref highestScore, "X");
+                    else aiMove(aiField, ref finalDimension, ref highestScore, counter, "X");
+                }
+            }
+        }
+    }
+    static void aiMove(string[] aiField, ref int finalDimension, ref int highestScore, int myDimension, string player)
+    {
+        int score;
+        for (int counter = 0; counter < 9; counter++)
+        {
+            if (aiField[counter] == " ") 
+            {
+                aiField[counter] = player;
+
+                if (aiCheckForWinner(aiField, "X") == true) //if player wins
+                {
+                    score = -10 + counter;
+                    if (score > highestScore)
+                    {
+                        highestScore = score;
+                        finalDimension = myDimension;
+                    }
+                }
+                else if (aiCheckForWinner(aiField, "O") == true)//if ai wins
+                {
+                    score = 10 - counter;
+                    if (score > highestScore)
+                    {
+                        highestScore = score;
+                        finalDimension = myDimension;
+                    }
+                    counter = 9;
+                }
+                else
+                {
+                    score = 0;
+                    if (score > highestScore)
+                    {
+                        highestScore = score;
+                        finalDimension = myDimension;
+                    }
+                    if (player == "X")
+                    {
+                        aiMove(aiField, ref finalDimension, ref highestScore, myDimension, "O");
+                    }
+                    else aiMove(aiField, ref finalDimension, ref highestScore, myDimension, "X");
                 }
             }
         }
