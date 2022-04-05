@@ -194,7 +194,7 @@ class mainClass
         int finalDimension = 0;
         int highestScore = -10;
 
-        aiMove(copiedField, ref finalDimension, ref highestScore, "X");
+        aiMove(copiedField, ref finalDimension, ref highestScore, "O");
         aiDimension = finalDimension;
     }
 
