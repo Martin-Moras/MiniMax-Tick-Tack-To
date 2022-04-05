@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MiniMax Tick Tack To/1.0.0": {
+        "runtime": {
+          "MiniMax Tick Tack To.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MiniMax Tick Tack To/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

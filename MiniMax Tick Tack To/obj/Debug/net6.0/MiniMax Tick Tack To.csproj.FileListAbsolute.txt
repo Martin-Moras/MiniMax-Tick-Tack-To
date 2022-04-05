@@ -1,0 +1,15 @@
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\bin\Debug\net6.0\MiniMax Tick Tack To.exe
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\bin\Debug\net6.0\MiniMax Tick Tack To.deps.json
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\bin\Debug\net6.0\MiniMax Tick Tack To.runtimeconfig.json
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\bin\Debug\net6.0\MiniMax Tick Tack To.dll
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\bin\Debug\net6.0\MiniMax Tick Tack To.pdb
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\obj\Debug\net6.0\MiniMax Tick Tack To.csproj.AssemblyReference.cache
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\obj\Debug\net6.0\MiniMax Tick Tack To.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\obj\Debug\net6.0\MiniMax Tick Tack To.AssemblyInfoInputs.cache
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\obj\Debug\net6.0\MiniMax Tick Tack To.AssemblyInfo.cs
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\obj\Debug\net6.0\MiniMax Tick Tack To.csproj.CoreCompileInputs.cache
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\obj\Debug\net6.0\MiniMax Tick Tack To.dll
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\obj\Debug\net6.0\refint\MiniMax Tick Tack To.dll
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\obj\Debug\net6.0\MiniMax Tick Tack To.pdb
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\obj\Debug\net6.0\MiniMax Tick Tack To.genruntimeconfig.cache
+C:\Users\martin\source\repos\MiniMax Tick Tack To\MiniMax Tick Tack To\obj\Debug\net6.0\ref\MiniMax Tick Tack To.dll
