@@ -1,6 +1,4 @@
-﻿using System;
-
-class mainClass
+﻿class mainClass
 {
     static int player = 1;
     static string[] field;
@@ -99,7 +97,7 @@ class mainClass
             else
             {
                 write(aiDimension, ref i);
-                aiDimension = 9; 
+                aiDimension = 9;
             }
             checkForWinner(player);
 
@@ -116,7 +114,7 @@ class mainClass
             }
             if (gameHasWinner == false && i == 8)
             {
-                Console.WriteLine("Tie");
+                Console.WriteLine("Draw");
             }
         }
 
@@ -189,55 +187,78 @@ class mainClass
     }
     static void ai()
     {
-        string[] copiedField = (string[])field.Clone();
-        int dimension = 0;
-        int finalDimension = 0;
-        int highestScore = -10;
-
-        aiMove(copiedField, ref finalDimension, ref highestScore, "O");
-        aiDimension = finalDimension;
+        aiDimension = firstAiMove((string[])field.Clone(), "O");
     }
 
-    static void aiMove(string[] aiField, ref int finalDimension, ref int highestScore, string player)
+    static int firstAiMove(string[] aiField, string player)
     {
-        int score;
+        int highScore = -10;
+        int finalDimension = 0;
+
         for (int counter = 0; counter < 9; counter++)
         {
-            if (aiField[counter] == " ") 
+            if (aiField[counter] == " ")
             {
-                aiField[counter] = player;
+                string[] copietAiField = (string[])aiField.Clone();
+                copietAiField[counter] = player;
 
-                if (aiCheckForWinner(aiField, "X") == true)
+                if (aiCheckForWinner(copietAiField, "O") == true)//if ai wins
                 {
-                    score = -10 + counter;
-                    if (score > highestScore)
-                    {
-                        highestScore = score;
-                        finalDimension = counter;
-                        counter = 8;
-                    }
-
-                }
-                else if (aiCheckForWinner(aiField, "O") == true)
-                {
-                    score = 10 - counter;
-                    if (score > highestScore)
-                    {
-                        highestScore = score;
-                        finalDimension = counter;
-                    }
+                    return counter;
                 }
                 else
                 {
-                    score = 0;
-                    if (player == "X")
+                    int thisScore = aiGetScore(copietAiField, 1, "X");
+
+                    if (thisScore > highScore)
                     {
-                        aiMove(aiField, ref finalDimension, ref highestScore, "O");
+                        highScore = thisScore;
+                        finalDimension = counter;
                     }
-                    else aiMove(aiField, ref finalDimension, ref highestScore, "X");
                 }
             }
         }
+        return finalDimension;
+    }
+    static int aiGetScore(string[] aiField, int depth, string player)
+    {
+        int score = 0;
+        int highScore = -10;
+        for (int counter = 0; counter < 9; counter++)
+        {
+            if (aiField[counter] == " ")
+            {
+                string[] copietAiField = (string[])aiField.Clone();
+                copietAiField[counter] = player;
+
+                if (aiCheckForWinner(copietAiField, "X") == true) //if player wins
+                {
+                    highScore = -10 + depth;
+                    counter = 9;
+                }
+                else if (aiCheckForWinner(copietAiField, "O") == true)//if ai wins
+                {
+                    highScore = 10 - depth;
+                    counter = 9;
+                }
+                else
+                {
+                    if (player == "X")
+                    {
+                        score = aiGetScore(copietAiField, depth++, "O");
+
+                        if (score > highScore) highScore = score;
+                    }
+                    else
+                    {
+                        score = aiGetScore(copietAiField, depth++, "X");
+                        
+                        if (score < highScore) highScore = score;
+                    }
+                }
+            }
+        }
+        return highScore;
     }
     static bool aiCheckForWinner(string[] aiField, string currentChar)
     {
