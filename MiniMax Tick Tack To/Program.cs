@@ -5,6 +5,7 @@
     static bool gameHasWinner = false;
     static bool usingAi;
     static int aiDimension = 9;
+    static int stepCounter;
 
     static void Main()
     {
@@ -188,11 +189,14 @@
     static void ai()
     {
         aiDimension = firstAiMove((string[])field.Clone(), "O");
+
+        Console.WriteLine(stepCounter);
+        stepCounter = 0;
     }
 
     static int firstAiMove(string[] aiField, string player)
     {
-        int highScore = -10;
+        int highScore = 0;
         int finalDimension = 0;
 
         for (int counter = 0; counter < 9; counter++)
@@ -208,8 +212,9 @@
                 }
                 else
                 {
+                    stepCounter++;
                     int thisScore = aiGetScore(copietAiField, 1, "X");
-
+                    Console.WriteLine(thisScore);
                     if (thisScore > highScore)
                     {
                         highScore = thisScore;
@@ -222,8 +227,8 @@
     }
     static int aiGetScore(string[] aiField, int depth, string player)
     {
-        int score = 0;
-        int highScore = -10;
+        int score;
+        int highScore = 0;
         for (int counter = 0; counter < 9; counter++)
         {
             if (aiField[counter] == " ")
@@ -231,33 +236,43 @@
                 string[] copietAiField = (string[])aiField.Clone();
                 copietAiField[counter] = player;
 
+
+
                 if (aiCheckForWinner(copietAiField, "X") == true) //if player wins
                 {
                     highScore = -10 + depth;
                     counter = 9;
+
+                    //Console.WriteLine("X win highscore: " + highScore + "depth: " + depth);
                 }
                 else if (aiCheckForWinner(copietAiField, "O") == true)//if ai wins
                 {
                     highScore = 10 - depth;
                     counter = 9;
+
+                    //Console.WriteLine("O win highscore: " + highScore + "depth: " + depth);
                 }
                 else
                 {
+                    stepCounter++;
+                    int copyDepth = depth++;
                     if (player == "X")
                     {
-                        score = aiGetScore(copietAiField, depth++, "O");
+                        score = aiGetScore(copietAiField, copyDepth, "O");
 
-                        if (score > highScore) highScore = score;
+                        if (score < highScore) highScore = score;
                     }
                     else
                     {
-                        score = aiGetScore(copietAiField, depth++, "X");
+                        score = aiGetScore(copietAiField, copyDepth, "X");
                         
-                        if (score < highScore) highScore = score;
+                        if (score > highScore) highScore = score;
                     }
                 }
             }
         }
+        Console.WriteLine("highscore " + highScore + "depth " + depth);
+
         return highScore;
     }
     static bool aiCheckForWinner(string[] aiField, string currentChar)
