@@ -1,4 +1,4 @@
-﻿class mainClass
+class mainClass
 {
     static int player = 1;
     static string[] field;
