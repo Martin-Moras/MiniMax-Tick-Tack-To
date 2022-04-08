@@ -2,7 +2,6 @@ class mainClass
 {
     static char player;
     static char[] field;
-    static bool gameHasWinner = false;
     static bool usingAi;
     static int aiDimension = 9;
     static int stepCounter;
@@ -11,11 +10,10 @@ class mainClass
     {
         //reset game
         player = 'X';
-        gameHasWinner = false;
         field = new char[9] { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }; 
         
         Console.WriteLine("\n");
-        Console.WriteLine("AI = Y");
+        Console.WriteLine("play with AI = Y");
 
         if (Console.ReadKey().Key == ConsoleKey.Y)//should I play against ai?
         {
