@@ -5,12 +5,14 @@ class mainClass
     static bool usingAi;
     static int aiDimension = 9;
     static int stepCounter;
+    static bool gameHasWinner = false;
 
     static void Main()
     {
         //reset game
         player = 'X';
         field = new char[9] { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }; 
+        gameHasWinner = false;
         
         Console.WriteLine("\n");
         Console.WriteLine("play with AI = Y");
@@ -99,12 +101,7 @@ class mainClass
                         break;
                 }
             }
-            if (checkForWinner(field, player) == true)
-            {
-                Console.WriteLine("Player " + player + " WIN");
-                Console.WriteLine("\n");
-                break;
-            }
+            if (gameHasWinner) break;
             if (i == 8)// if is draw
             {
                 Console.WriteLine("Draw");
@@ -131,14 +128,20 @@ class mainClass
         else
         {
             field[fieldDimension] = player;//place char in selected field and change player
-
-            if (player == 'X')
+            if (checkForWinner(field, player) == true)
             {
-                player = 'O';
+                gameHasWinner = true;
             }
             else
             {
-                player = 'X';
+                if (player == 'X')
+                {
+                    player = 'O';
+                }
+                else
+                {
+                    player = 'X';
+                }
             }
         }
         Console.WriteLine("\n");
@@ -150,6 +153,11 @@ class mainClass
         Console.WriteLine("|" + field[0] + "|" + field[1] + "|" + field[2] + "|");
         Console.WriteLine("-------");
         Console.WriteLine("\n");
+        if (gameHasWinner)
+        {
+            Console.WriteLine("Player " + player + " WIN");
+            Console.WriteLine("\n");
+        }
     }
 
     static bool checkForWinner(char[] aiField, char currentChar)
